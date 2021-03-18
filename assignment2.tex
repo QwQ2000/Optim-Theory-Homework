@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage{ctex}
+\title{优化理论 作业2}
+\author{} 
+\date{}
+\usepackage[a4paper,left=10mm,right=10mm,top=15mm,bottom=15mm]{geometry}  
+\begin{document}
+\section*{课堂习题}
+\noindent
+\textbf{题目：}求$\mathop{min}\limits_{\vec{x}}\vert\vert\vec{x}\vert\vert_2\ (\textbf{s.t.}A\vec{x}=b)$，其中线性方程组$A\vec{x}=b$有无穷多组解.\\
+\textbf{解:}不妨设$A\in\mathcal{R}^{m\times n},x\in\mathcal{R}^{n\times 1},b\in\mathcal{R}^{m\times 1}$,\\
+则由题意得$m<n,r(A)=m$.\\
+原题目可归结为求$\mathop{min}\limits_{\vec{x}}\frac{1}{2}\vert\vert\vec{x}\vert\vert_2^2 =\frac{1}{2}x^Tx$.\\
+引入拉格朗日函数$L(x,\lambda)=\frac{1}{2}x^Tx-\lambda(Ax-b)$，其中参数$\lambda\in\mathcal{R}^{m\times 1}$.\\
+令$\frac{\partial L}{\partial x}=x - A^T \lambda=0$，可得
+\begin{equation}
+    x=A^T\lambda
+\end{equation}
+令$\frac{\partial L}{\partial \lambda}=-(Ax-b)=0$,可得
+\begin{equation}
+    Ax=b
+\end{equation}
+下面联合方程(1)(2)解出$L$的极小值点：\\
+由(1)得，$Ax=AA^T\lambda$，则有\begin{equation}
+    \lambda = (AA^T)^{-1}Ax
+\end{equation}
+代入(2)得，\begin{equation}
+    \lambda = (AA^T)^{-1}b
+\end{equation}
+由(1)(4)得，$x=A^T(AA^T)^{-1}b$.\\
+由于目标函数$L$只有唯一极小值点，$x=A^T(AA^T)^{-1}b$即为满足题意的最小值.
+\end{document}

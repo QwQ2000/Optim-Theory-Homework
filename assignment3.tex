@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage{ctex}
+\title{优化理论 作业3}
+\author{} 
+\date{}
+\usepackage[a4paper,left=10mm,right=10mm,top=15mm,bottom=15mm]{geometry}  
+\begin{document}
+\section*{3.5}
+\noindent
+设新的一组基为$V=\{v_1,v_2,v_3,v_4\}$，对于任意非零向量$x\in\mathcal{R}^4$，线性变换的形式为$Ax=y$\\
+在新的一组基下，$x'=Vx,y'=Vy$.\\
+设新一组基下的线性变换矩阵为对角阵$\Lambda$，则有$\Lambda x'=y'$，即$V^{-1}\Lambda Vx=y=Ax$\\
+显然，对矩阵$A$进行相似对角化，则相似变换矩阵即为所需的基变换矩阵.\\
+特征方程$Ax=\lambda x$，则有$(\lambda E-A)x=0$，特征方程$|\lambda E-A|=0$解得特征值$\lambda_1=2,\lambda_2=3,\lambda_3=1,\lambda_4=-1$.\\
+将特征值分别带入原特征方程，分别解得特征向量为$x_1 = \left(
+    \begin{array}{c}
+        0 \\
+        0 \\
+        1 \\
+        0
+    \end{array}
+\right),x_2 = \left(
+    \begin{array}{c}
+        0 \\
+        0 \\
+        1 \\
+        1
+    \end{array}
+\right),x_3=\left(
+    \begin{array}{c}
+        0 \\
+        2 \\
+        -9 \\
+        1
+    \end{array}
+\right),x_4=\left(
+    \begin{array}{c}
+        24 \\
+        -12 \\
+        1 \\
+        9
+    \end{array}
+\right)$.\\则所求的基即为$V=\{x_1,x_2,x_3,x_4\}$
+\section*{4.1}
+\noindent
+必要性：由题意可知，$S$可表示为$\{x\in\mathcal{R}^n:Ax=b\},A\in\mathcal{R}^{m\times n },b\in\mathcal{R}^{m}$.\\
+对于任意$x,y\in S,\alpha \in\mathcal{R}$，显然$Ax=b,Ay=b$.\\
+因为$A[\alpha x+(1-\alpha)y]=Ay+\alpha Ax-\alpha Ay=b+\alpha b-\alpha b = b$,所以$\alpha x+(1-\alpha)y\in S$，必要性得证.\\
+充分性：若$S$为空集，则原命题充分性得证.\\
+当$S$不为空时，设$x_0\in S$，令集合$S_0 = S-x_0=\{x-x_0:x\in S\}$.\\
+显然，$0\in S_0$，取任意$x,y\in S_0,\alpha\in\mathcal{R}$，则有\\
+$\alpha  = \alpha x + (1-\alpha)0\in S_0$;\\
+$\frac{1}{2}x+(1-\frac{1}{2})y\in S_0$，即$x+y\in S_0$.\\
+因此$S_0$为子空间,则必有$S_0=\mathcal{N}(A)=\{x:Ax=0\}$.令$b=Ax_0$，则\\
+$S=S_0+x_0=\{y+x_0:y\in\mathcal{N}(A)\}=\{y+x_0:Ay=0\}=\{y+x_0:A(y+x_0)=b\}=\{x:Ax+b\}$.\\
+综上所述，原命题的充分性得证.
+\end{document}

@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{ctex}
+\title{优化理论 作业5}
+\author{} 
+\date{}
+\usepackage[a4paper,left=10mm,right=10mm,top=15mm,bottom=15mm]{geometry}  
+\begin{document}
+\section*{6.1}
+\noindent
+\textbf{(1)}令$d=\left(
+    \begin{array}{c}
+        1 \\
+        -2 \\
+    \end{array}
+\right)$，则有$d^Tf(x^*)=-1<0$，违背了一阶必要条件，因此$x^*$必不为局部最优解.\\
+\textbf{(2)}考察所有可能的$d=\left(
+    \begin{array}{c}
+        a \\
+        b \\
+    \end{array}
+\right)$，由题意得$a\geq 0$，则必有一阶必要条件$d^Tf(x^*)\geq 0 $恒成立.\\
+因此，$x^*$可能为局部最优解.\\
+\textbf{(3)}显然，Hessian矩阵为正定矩阵，这满足二阶充分条件，因此$x^*$必为局部最优解.\\
+\textbf{(4)}由\textbf{(2)}知，$x^*$满足一阶必要条件.令$d=\left(
+    \begin{array}{c}
+        0 \\
+        1 \\
+    \end{array}
+\right)$，则有$d^TF(x^*)d=-1<0$，这违背了二阶必要条件，故$x^*$必不为局部最优解.
+\end{document}

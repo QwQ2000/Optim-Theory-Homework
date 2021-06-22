@@ -1,0 +1,346 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{amsmath}
+\usepackage{bm}
+
+\boldmath
+\title{优化理论 复习}
+\author{QwQ2000} 
+\date{2021年6月21日}
+\usepackage[a4paper,left=10mm,right=10mm,top=15mm,bottom=15mm]{geometry}  
+\begin{document}
+\maketitle
+\noindent
+\section{Cauchy-Schwarz不等式及其推广}
+Cauchy-Schwarz不等式: 
+\begin{equation*}
+    <x,y>\leq||x|| ||y||
+\end{equation*}
+
+其中二范数为平方和开根.\\
+
+证明三角不等式
+\begin{equation*}
+    ||x+y||\leq||x||+||y||
+\end{equation*}
+
+\textbf{证明：}
+\begin{align*}
+    ||x+y||^2&=||x||^2+2<x,y>+||y||^2\\
+             &\leq ||x||^2+2||x|| ||y||+||y||^2\\
+             &=(||x||+||y||)^2    
+\end{align*}
+
+当$<x,y>=0$时，可得勾股定理：
+\begin{equation*}
+    ||x+y||^2\leq ||x||^2+||y||^2
+\end{equation*}
+
+\section{最小二乘典题}
+\textbf{题目：}求$\mathop{min}\limits_{\vec{x}}\vert\vert\vec{x}\vert\vert_2\ (\textbf{s.t.}A\vec{x}=b)$.
+
+\textbf{解：}原题目可归结为求$\mathop{min}\limits_{\vec{x}}\frac{1}{2}\vert\vert\vec{x}\vert\vert_2^2 =\frac{1}{2}x^Tx$.\\
+
+引入拉格朗日函数$L(x,\lambda)=\frac{1}{2}x^Tx-\lambda(Ax-b)$，其中参数$\lambda\in\mathcal{R}^{m\times 1}$.\\
+
+令$\frac{\partial L}{\partial x}=x - A^T \lambda=0$，可得
+\begin{equation*}
+    x=A^T\lambda
+\end{equation*}
+
+令$\frac{\partial L}{\partial \lambda}=-(Ax-b)=0$,可得
+\begin{equation*}
+    Ax=b
+\end{equation*}
+
+下面联合方程(1)(2)解出$L$的极小值点：\\
+
+由(1)得，$Ax=AA^T\lambda$，则有\begin{equation*}
+    \lambda = (AA^T)^{-1}Ax
+\end{equation*}
+
+代入(2)得，\begin{equation*}
+    \lambda = (AA^T)^{-1}b
+\end{equation*}
+
+由(1)(4)得，$x=A^T(AA^T)^{-1}b$.\\
+
+由于目标函数$L$只有唯一极小值点，$x=A^T(AA^T)^{-1}b$即为满足题意的最小值.\\
+
+\textbf{题目：}求$\mathop{min}\limits_{\vec{x}}||Ax-b||_2$.
+
+\textbf{解：}原问题可归结为求$f(x)=||Ax-b||^2_2$的最小值.
+
+令$\nabla f(x)=A^T(Ax-b)=0$，解得$x=(A^TA)^{-1}A^Tb$
+
+几何性质：$Ax^*$是$b$在$A$的列向量张成空间上的投影.
+
+\section{线性变换与特征值典题}
+\textbf{题目:}对于线性变换$A$，找到一组基，使得这组基下$A$为对角阵.
+
+\textbf{解：}对于任意自然基下的向量$x,y$，有$Ax=y$.
+
+假设新基就是$A$的特征向量,有$V=\{v_1,v_2,...,v_n\}$，则新基下$A$的表示形式为$diag(\lambda_1,\lambda_2,...,\lambda_n)$.
+
+$x$在自然基下的坐标为$\left(
+    \begin{array}{c}
+        x_1 \\
+        \dots \\
+        x_n
+    \end{array}
+\right)$,则$x$在$\{v_1,v_2,...,v_n\}$下坐标为$\left(
+    \begin{array}{c}
+        a_1 \\
+        \dots \\
+        a_n
+    \end{array}
+\right)$.
+
+$y$在自然基下的坐标为$\left(
+    \begin{array}{c}
+        y_1 \\
+        \dots \\
+        y_n
+    \end{array}
+\right)$,则$y$在$\{v_1,v_2,...,v_n\}$下坐标为$\left(
+    \begin{array}{c}
+        b_1 \\
+        \dots \\
+        b_n
+    \end{array}
+\right)$.
+
+则有$\{e_1,\dots,e_n\}\left(
+    \begin{array}{c}
+        x_1 \\
+        \dots \\
+        x_n
+    \end{array}
+\right)=V\left(
+    \begin{array}{c}
+        a_1 \\
+        \dots \\
+        a_n
+    \end{array}
+\right)$
+
+两端左乘$A$可得$A\left(
+    \begin{array}{c}
+        x_1 \\
+        \dots \\
+        x_n
+    \end{array}
+\right)=AV\left(
+    \begin{array}{c}
+        a_1 \\
+        \dots \\
+        a_n
+    \end{array}
+\right)$
+
+即$A\left(
+    \begin{array}{c}
+        x_1 \\
+        \dots \\
+        x_n
+    \end{array}
+\right)=Vdiag(\lambda_1,\dots,\lambda_n)\left(
+    \begin{array}{c}
+        a_1 \\
+        \dots \\
+        a_n
+    \end{array}
+\right)$
+
+对于$y$有$\{e_1,\dots,e_n\}\left(
+    \begin{array}{c}
+        y_1 \\
+        \dots \\
+        y_n
+    \end{array}
+\right)=V\left(
+    \begin{array}{c}
+        b_1 \\
+        \dots \\
+        b_n
+    \end{array}
+\right)$
+
+因为$A\left(
+    \begin{array}{c}
+        x_1 \\
+        \dots \\
+        x_n
+    \end{array}
+\right)=\{e_1,\dots,e_n\}\left(
+    \begin{array}{c}
+        y_1 \\
+        \dots \\
+        y_n
+    \end{array}
+\right)$
+
+所以$Vdiag(\lambda_1,\dots,\lambda_n)\left(
+    \begin{array}{c}
+        a_1 \\
+        \dots \\
+        a_n
+    \end{array}
+\right)=V\left(
+    \begin{array}{c}
+        b_1 \\
+        \dots \\
+        b_n
+    \end{array}
+\right)$，消去$V$可证在$V$下线性变换$A$对应的矩阵为对角阵.
+\section{二次型典题}
+\textbf{题目：}$x$经正交变换变换为$y$，求这二者长度关系？
+
+\textbf{解：}由题意得$Q^TQ=I,y=Qx$.
+
+则有$||y||^2 =<Qx,Qx>=x^TQ^TQx=x^TIx+x^Tx=||x||^2$
+
+因此$x$与$y$等长.\\
+
+\textbf{题目：}求$\mathop{min}\limits_{\vec{x}}x^TQx, x_1+x_2+x_3=1$.
+
+\textbf{解：}由于$x^TQx$为二次型，故函数$f(x)=x^TQx$可导.
+
+令$\nabla f(x)=2Qx=0$,由于$Q$为正定阵，则必有$Q^{-1}$存在，解得$x=0$.
+
+但是$x=0$不满足$x_1+x_2+x_3=1$条件，则原问题转化为在平面$x_1+x_2+x_3$上找离$x=0$最近的点.
+\section{矩阵范数的性质}
+\begin{itemize}
+    \item 非零矩阵范数>0，零矩阵范数为0
+    \item $c\in \mathcal{R},||cA||=|c| ||A||$
+    \item 三角不等式$||A+B||\leq||A||+||B||$
+    \item $||AB||\leq||A|| ||B||$
+\end{itemize}
+
+\section{凸函数的定义}
+对于$\forall x,y\in D,\forall\alpha\in [0,1]$
+\begin{itemize}
+    \item $\alpha f(x)+(1-\alpha)f(y)\geq f(\alpha x+(1-\alpha)y)$
+    \item $f(y)\geq f(x)+\nabla f(x)(y-x)$
+    \item $f''(x)\geq 0$或Hessian矩阵半正定
+\end{itemize}
+
+\section{局部最优解判定的条件}
+\subsection{First Order Necessary Condition(FONC)}
+对于需要判定的局部最优解$x^*$, $d$为定义域内任意可行的方向，则条件为
+\begin{equation*}
+    \nabla f(x^*)\cdot d \geq 0
+\end{equation*}
+\subsection{Second Order Necessary Condition(SONC)}
+存在$d$使得$f(x^*)\cdot d=0$，则
+\begin{equation*}
+    d^T\nabla^2f(x^*)d \geq 0
+\end{equation*}
+\subsection{Second Order Sufficient Condition(SOSC)}
+\begin{equation*}
+    \nabla f(x^*)=0,\nabla^2f(x^*)\succ 0
+\end{equation*}
+
+即梯度为0，Hessian矩阵正定
+\section{一维最优化方法——黄金分割法}
+黄金分割法的Python代码：
+\begin{verbatim}
+    def gsec(f,a,b,eps = 1e-3):
+        ratio = (np.sqrt(5) - 1) / 2
+        while (b - a) > eps:
+            a2,a1 = a + (b - a) * ratio,b - (b - a) * ratio #左侧和右侧的黄金分割点
+            #保留值较小的一个分割点
+            if f(a1) <= f(a2): 
+                b = a2
+            else:
+                a = a1
+        return (a + b) / 2
+\end{verbatim}
+
+\section{牛顿迭代法及其推导}
+对于目标函数$f(x)$，在$x^k$处的近似可以用$f(x)$的二阶泰勒展开表示.
+
+这一近似的具体形式为
+\begin{equation*}
+    g(x)=f(x^k)+\nabla f(x^k)(x-x^k)+\frac{1}{2}(x-x^k)^TH_f(x^k)(x-x^k)
+\end{equation*}
+
+求$g(x)$最小值，令$\nabla g(x)=0$解得$x=x^k-H^{-1}_f(x^k)\nabla f(x^k)$
+
+则牛顿迭代法公式为$x^{k+1}=x^k-H^{-1}_f(x^k)\nabla f(x^k)$
+
+\section{梯度下降法}
+\textbf{证明负梯度方向是目标函数下降最快的方向：}
+
+
+由柯西不等式得，目标函数在任意方向上$d(||d||=1)$的增长率
+\begin{equation*}
+    <\nabla f(x),d>\leq ||\nabla f(x)||\cdot ||d||=\nabla f(x)
+\end{equation*}
+
+当且仅当$d=\frac{\nabla f(x)}{||\nabla f(x)||}$时，增长率最大.
+因此，负梯度方向目标函数下降最快.\\
+
+\textbf{问题：}对于$i=1.5,y=0.5,w=0.8$，利用梯度下降法调整$w$的值使得$wi=y$.
+
+梯度下降法的伪代码：
+\begin{verbatim}
+    i,w = 1.5,0.8
+    y = 0.5
+    lr = 0.001
+    eps = 1e-6
+
+    while 1:
+        g = 2 * (i * w - y) * i #计算w的梯度，设损失函数为(i * w - y)**2
+        if abs(g) < eps:
+            break
+        w = w - lr * g #进行梯度下降
+\end{verbatim}
+
+最速梯度下降法，利用一维最优化方法寻找最佳的步长，伪代码：
+\begin{verbatim}
+    x = x0
+    while |grad(x)| > eps:
+        a = argmin_{a>=0}(f(x - a * grad(x)))
+        x = x - a * grad(x)
+\end{verbatim}
+
+\section{近端梯度}
+近端梯度算子：
+\begin{equation*}
+    prox_{\lambda f}(v)=\mathop{argmin}\limits_{x}(f(x)+\frac{1}{2\lambda}||x-v||^2)
+\end{equation*}
+
+对于不可导函数$h(x)=f(x)+\lambda g(x)$，其中$f(x)$光滑，$prox_g(x)$易求得，
+就可以用近端梯度方法优化不可导的目标函数.
+
+有迭代公式：
+\begin{equation*}
+    x^{k+1}=prox_{\lambda^kg}(x^k-\lambda^k\nabla f(x^k))
+\end{equation*}
+
+\textbf{典型例题之LASSO问题：}最小化$f(x)=\frac{1}{2}||Ax-b||^2_2+\lambda||x||_1$\\
+
+\textbf{解：}可导部分$g(x)=\frac{1}{2}||Ax-b||,\nabla g(x)=A^T(Ax-b)$.
+
+则近端梯度法的迭代公式为
+\begin{equation*}
+    x^{k+1}=prox_{\lambda||x||_1}(x^k-\lambda\nabla g(x^k))    
+\end{equation*}
+
+对于1-范数$||x||_1$，近端梯度算子可用软阈值函数表示，即
+\begin{equation*}
+    x^{k+1}=\mathcal{S}_{\lambda}(x^k-\lambda\nabla g(x^k))
+\end{equation*}
+
+其中软阈值函数
+\begin{equation*}
+    \mathcal{S}_\lambda(x)=\left\{
+    \begin{aligned}
+    &x-\lambda,&x\geq\lambda\\
+    &0,&-\lambda<x<\lambda\\
+    &x+\lambda,&x\leq -\lambda
+    \end{aligned}
+    \right.
+\end{equation*}
+\end{document}
